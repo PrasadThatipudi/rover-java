@@ -52,4 +52,28 @@ public class Rover {
             }
         }
     }
+
+    public Direction right() {
+        switch (facingDirection){
+            case NORTH -> {
+                facingDirection = Direction.EAST;
+                return facingDirection;
+            }
+            case EAST -> {
+                facingDirection = Direction.SOUTH;
+                return facingDirection;
+            }
+            case SOUTH -> {
+                facingDirection = Direction.WEST;
+                return facingDirection;
+            }
+            case WEST -> {
+                facingDirection = Direction.NORTH;
+                return facingDirection;
+            }
+            default -> {
+                return null;
+            }
+        }
+        }
 }

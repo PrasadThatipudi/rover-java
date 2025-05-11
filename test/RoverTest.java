@@ -35,4 +35,26 @@ public class RoverTest {
 
         assertEquals(Direction.SOUTH, rover.left());
     }
+
+    @Test
+    void right(){
+        int x = 1;
+        int y = 2;
+        Direction facingDirection = Direction.NORTH;
+        Rover rover = new Rover(x, y, facingDirection);
+
+        assertEquals(Direction.EAST, rover.right());
+    }
+
+    @Test
+    void multipleRight(){
+        int x = 1;
+        int y = 2;
+        Direction facingDirection = Direction.NORTH;
+        Rover rover = new Rover(x, y, facingDirection);
+
+        rover.right();
+
+        assertEquals(Direction.SOUTH, rover.right());
+    }
 }
