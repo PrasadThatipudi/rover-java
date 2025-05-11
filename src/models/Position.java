@@ -19,14 +19,16 @@ public class Position {
     }
 
     public Position moveX(int offSetX) {
-        x += offSetX;
+        if((x + offSetX) < 0) return null;
 
+        x += offSetX;
         return this;
     }
 
     public Position moveY(int offSetY) {
-        y += offSetY;
+        if((y + offSetY) < 0) return null;
 
+        y += offSetY;
         return this;
     }
 }

@@ -30,7 +30,7 @@ class PositionTest {
 
     @Test
     void moveBackwardOnX(){
-        int x = 0;
+        int x = 1;
         int y = 0;
         Position position = new Position(x, y);
         int offSetX = -1;
@@ -57,7 +57,7 @@ class PositionTest {
     @Test
     void moveBackwardOnY(){
         int x = 0;
-        int y = 0;
+        int y = 1;
         Position position = new Position(x, y);
         int offSetY = -1;
 
@@ -65,5 +65,25 @@ class PositionTest {
 
         assertEquals(x ,position.getX());
         assertEquals(y + offSetY, position.getY());
+    }
+
+    @Test
+    void moveOnEdgeOfX(){
+        int x = 0;
+        int y = 0;
+        Position position = new Position(x, y);
+        int offSetX = -1;
+
+        assertEquals(null, position.moveX(offSetX));
+    }
+
+    @Test
+    void moveOnEdgeOfY(){
+        int x = 0;
+        int y = 0;
+        Position position = new Position(x, y);
+        int offSetY = -1;
+
+        assertEquals(null, position.moveY(offSetY));
     }
 }
