@@ -2,17 +2,17 @@ import models.Direction;
 import models.Position;
 
 public class Rover {
-    private Direction facingDirection;
+    private Direction heading;
     private Position position;
 
-    public Rover(Integer x, Integer y, Direction facingDirection) {
+    public Rover(Integer x, Integer y, Direction heading) {
         this.position = new Position(x, y);
-        this.facingDirection = facingDirection;
+        this.heading = heading;
     }
 
     public Rover(Position position, Direction facingDirection) {
         this.position = position;
-        this.facingDirection = facingDirection;
+        this.heading = facingDirection;
     }
 
     public int getX() {
@@ -23,33 +23,33 @@ public class Rover {
         return position.getY();
     }
 
-    public Direction getFacingDirection() {
-        return facingDirection;
+    public Direction getHeading() {
+        return heading;
     }
 
     public String getRoverPosition() {
-        String roverPosition = String.valueOf(position.getX()).concat(" " + String.valueOf(position.getY())).concat(" " + String.valueOf(facingDirection.acronym));
+        String roverPosition = String.valueOf(position.getX()).concat(" " + String.valueOf(position.getY())).concat(" " + String.valueOf(heading.acronym));
 
         return  roverPosition;
     }
 
     public Direction left() {
-        switch (facingDirection) {
+        switch (heading) {
             case NORTH -> {
-                facingDirection = Direction.WEST;
-                return facingDirection;
+                heading = Direction.WEST;
+                return heading;
             }
             case EAST -> {
-                facingDirection = Direction.NORTH;
-                return facingDirection;
+                heading = Direction.NORTH;
+                return heading;
             }
             case SOUTH -> {
-                facingDirection = Direction.EAST;
-                return facingDirection;
+                heading = Direction.EAST;
+                return heading;
             }
             case WEST -> {
-                facingDirection = Direction.SOUTH;
-                return facingDirection;
+                heading = Direction.SOUTH;
+                return heading;
             }
             default -> {
                 return null;
@@ -58,22 +58,22 @@ public class Rover {
     }
 
     public Direction right() {
-        switch (facingDirection){
+        switch (heading){
             case NORTH -> {
-                facingDirection = Direction.EAST;
-                return facingDirection;
+                heading = Direction.EAST;
+                return heading;
             }
             case EAST -> {
-                facingDirection = Direction.SOUTH;
-                return facingDirection;
+                heading = Direction.SOUTH;
+                return heading;
             }
             case SOUTH -> {
-                facingDirection = Direction.WEST;
-                return facingDirection;
+                heading = Direction.WEST;
+                return heading;
             }
             case WEST -> {
-                facingDirection = Direction.NORTH;
-                return facingDirection;
+                heading = Direction.NORTH;
+                return heading;
             }
             default -> {
                 return null;
@@ -82,7 +82,7 @@ public class Rover {
         }
 
     public void move() {
-        switch (facingDirection){
+        switch (heading){
             case NORTH -> {
                 position.moveY(1);
                 return;

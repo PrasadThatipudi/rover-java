@@ -8,8 +8,8 @@ public class RoverTest {
     @Test
     void instantiateRover(){
         Position position = new Position(0, 0);
-        Direction facingDirection = Direction.NORTH;
-        Rover rover = new Rover(position, facingDirection);
+        Direction heading = Direction.NORTH;
+        Rover rover = new Rover(position, heading);
 
         assertEquals("0 0 N", rover.getRoverPosition());
     }
@@ -17,8 +17,8 @@ public class RoverTest {
     @Test
     void left(){
         Position position = new Position(0, 0);
-        Direction facingDirection = Direction.NORTH;
-        Rover rover = new Rover(position, facingDirection);
+        Direction heading = Direction.NORTH;
+        Rover rover = new Rover(position, heading);
 
         assertEquals(Direction.WEST, rover.left());
     }
@@ -26,8 +26,8 @@ public class RoverTest {
     @Test
     void multipleLeft(){
         Position position = new Position(0, 0);
-        Direction facingDirection = Direction.NORTH;
-        Rover rover = new Rover(position, facingDirection);
+        Direction heading = Direction.NORTH;
+        Rover rover = new Rover(position, heading);
 
         rover.left();
 
@@ -37,8 +37,8 @@ public class RoverTest {
     @Test
     void right(){
         Position position = new Position(0, 0);
-        Direction facingDirection = Direction.NORTH;
-        Rover rover = new Rover(position, facingDirection);
+        Direction heading = Direction.NORTH;
+        Rover rover = new Rover(position, heading);
 
         assertEquals(Direction.EAST, rover.right());
     }
@@ -46,8 +46,8 @@ public class RoverTest {
     @Test
     void multipleRight(){
         Position position = new Position(0, 0);
-        Direction facingDirection = Direction.NORTH;
-        Rover rover = new Rover(position, facingDirection);
+        Direction heading = Direction.NORTH;
+        Rover rover = new Rover(position, heading);
 
         rover.right();
 
@@ -57,8 +57,8 @@ public class RoverTest {
     @Test
     void moveOneStepNorth(){
         Position position = new Position(0, 0);
-        Direction facingDirection = Direction.NORTH;
-        Rover rover = new Rover(position, facingDirection);
+        Direction heading = Direction.NORTH;
+        Rover rover = new Rover(position, heading);
 
         rover.move();
 
@@ -68,8 +68,8 @@ public class RoverTest {
     @Test
     void moveOneStepSouth(){
         Position position = new Position(0, 1);
-        Direction facingDirection = Direction.SOUTH;
-        Rover rover = new Rover(position, facingDirection);
+        Direction heading = Direction.SOUTH;
+        Rover rover = new Rover(position, heading);
 
         rover.move();
 
@@ -79,8 +79,8 @@ public class RoverTest {
     @Test
     void moveOneStepEast(){
         Position position = new Position(0, 0);
-        Direction facingDirection = Direction.EAST;
-        Rover rover = new Rover(position, facingDirection);
+        Direction heading = Direction.EAST;
+        Rover rover = new Rover(position, heading);
 
         rover.move();
 
@@ -90,8 +90,8 @@ public class RoverTest {
     @Test
     void moveOneStepWest(){
         Position position = new Position(1, 0);
-        Direction facingDirection = Direction.WEST;
-        Rover rover = new Rover(position, facingDirection);
+        Direction heading = Direction.WEST;
+        Rover rover = new Rover(position, heading);
 
         rover.move();
 
