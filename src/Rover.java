@@ -51,6 +51,29 @@ public class Rover {
         return offSets;
     }
 
+    public static Rover navigateRover(Rover rover, String instructionsString) {
+        String[] instructions = instructionsString.split("");
+
+        for (String instruction : instructions) {
+            switch (instruction){
+                case "L" -> {
+                    rover.left();
+                    break;
+                }
+                case "R" -> {
+                    rover.right();
+                    break;
+                }
+                case "M" -> {
+                    rover.move();
+                    break;
+                }
+            }
+        }
+
+        return rover;
+    }
+
     public String getRoverPosition() {
         return String.valueOf(position.getX()).concat(" " + position.getY()).concat(" " + heading.acronym);
     }

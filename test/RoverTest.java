@@ -89,4 +89,84 @@ public class RoverTest {
 
         assertEquals("0 0 W", rover.move().getRoverPosition());
     }
+    
+    @Test
+    void instructToTurnLeft(){
+        String instructions = "L";
+
+        Position position = new Position(0,0);
+        Rover rover = new Rover(position, Direction.NORTH);
+
+        assertEquals("0 0 W", Rover.navigateRover(rover, instructions).getRoverPosition());
+    }
+
+    @Test
+    void instructToTurnRight(){
+        String instructions = "R";
+
+        Position position = new Position(0,0);
+        Rover rover = new Rover(position, Direction.NORTH);
+
+        assertEquals("0 0 E", Rover.navigateRover(rover, instructions).getRoverPosition());
+    }
+
+    @Test
+    void instructToMoveHeadingNorth(){
+        String instructions = "M";
+
+        Position position = new Position(0,0);
+        Rover rover = new Rover(position, Direction.NORTH);
+
+        assertEquals("0 1 N", Rover.navigateRover(rover, instructions).getRoverPosition());
+    }
+
+    @Test
+    void instructToMoveHeadingEast(){
+        String instructions = "M";
+
+        Position position = new Position(0,0);
+        Rover rover = new Rover(position, Direction.EAST);
+
+        assertEquals("1 0 E", Rover.navigateRover(rover, instructions).getRoverPosition());
+    }
+
+    @Test
+    void instructToMoveHeadingSouth(){
+        String instructions = "M";
+
+        Position position = new Position(0,1);
+        Rover rover = new Rover(position, Direction.SOUTH);
+
+        assertEquals("0 0 S", Rover.navigateRover(rover, instructions).getRoverPosition());
+    }
+
+    @Test
+    void instructToMoveHeadingWest(){
+        String instructions = "M";
+
+        Position position = new Position(1,0);
+        Rover rover = new Rover(position, Direction.WEST);
+
+        assertEquals("0 0 W", Rover.navigateRover(rover, instructions).getRoverPosition());
+    }
+
+    @Test
+    void instructToMoveHeadingSouthOnEdge(){
+        String instructions = "M";
+
+        Position position = new Position(0,0);
+        Rover rover = new Rover(position, Direction.SOUTH);
+
+        assertEquals("0 0 S", Rover.navigateRover(rover, instructions).getRoverPosition());
+    }
+
+    @Test
+    void instructToMoveHeadingWestOnEdge(){
+        String instructions = "M";
+
+        Position position = new Position(0,0);
+        Rover rover = new Rover(position, Direction.WEST);
+
+        assertEquals("0 0 W", Rover.navigateRover(rover, instructions).getRoverPosition());
+    }
 }
