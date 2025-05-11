@@ -3,12 +3,12 @@ import models.Direction;
 public class Rover {
     private final int x;
     private final int y;
-    private final Direction direction;
+    private final Direction facingDirection;
 
-    public Rover(int x, int y, Direction direction) {
+    public Rover(int x, int y, Direction facingDirection) {
         this.x = x;
         this.y = y;
-        this.direction = direction;
+        this.facingDirection = facingDirection;
     }
 
     public int getX() {
@@ -19,7 +19,7 @@ public class Rover {
         return y;
     }
 
-    public Direction getDirection() {
-        return direction;
+    public Direction getFacingDirection() {
+        return facingDirection;
     }
 }

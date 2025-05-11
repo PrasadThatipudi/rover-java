@@ -8,11 +8,11 @@ public class RoverTest {
     void instantiateRover(){
         int x = 1;
         int y = 2;
-        Direction direction = Direction.NORTH;
-        Rover rover = new Rover(x, y, direction);
+        Direction facingDirection = Direction.NORTH;
+        Rover rover = new Rover(x, y, facingDirection);
 
         assertEquals(x, rover.getX());
         assertEquals(y, rover.getY());
-        assertEquals(direction, rover.getDirection());
+        assertEquals(facingDirection, rover.getFacingDirection());
     }
 }
