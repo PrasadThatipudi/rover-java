@@ -3,7 +3,7 @@ import models.Direction;
 public class Rover {
     private final Integer x;
     private final Integer y;
-    private final Direction facingDirection;
+    private Direction facingDirection;
 
     public Rover(Integer x, Integer y, Direction facingDirection) {
         this.x = x;
@@ -27,5 +27,29 @@ public class Rover {
         String roverPosition = String.valueOf(x).concat(" " + String.valueOf(y)).concat(" " + String.valueOf(facingDirection.acronym));
 
         return  roverPosition;
+    }
+
+    public Direction left() {
+        switch (facingDirection) {
+            case NORTH -> {
+                facingDirection = Direction.WEST;
+                return facingDirection;
+            }
+            case EAST -> {
+                facingDirection = Direction.NORTH;
+                return facingDirection;
+            }
+            case SOUTH -> {
+                facingDirection = Direction.EAST;
+                return facingDirection;
+            }
+            case WEST -> {
+                facingDirection = Direction.SOUTH;
+                return facingDirection;
+            }
+            default -> {
+                return null;
+            }
+        }
     }
 }
