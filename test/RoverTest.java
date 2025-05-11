@@ -60,9 +60,7 @@ public class RoverTest {
         Direction heading = Direction.NORTH;
         Rover rover = new Rover(position, heading);
 
-        rover.move();
-
-        assertEquals("0 1 N", rover.getRoverPosition());
+        assertEquals("0 1 N", rover.move().getRoverPosition());
     }
 
     @Test
@@ -71,9 +69,7 @@ public class RoverTest {
         Direction heading = Direction.SOUTH;
         Rover rover = new Rover(position, heading);
 
-        rover.move();
-
-        assertEquals("0 0 S", rover.getRoverPosition());
+        assertEquals("0 0 S", rover.move().getRoverPosition());
     }
 
     @Test
@@ -82,9 +78,7 @@ public class RoverTest {
         Direction heading = Direction.EAST;
         Rover rover = new Rover(position, heading);
 
-        rover.move();
-
-        assertEquals("1 0 E", rover.getRoverPosition());
+        assertEquals("1 0 E", rover.move().getRoverPosition());
     }
 
     @Test
@@ -93,8 +87,6 @@ public class RoverTest {
         Direction heading = Direction.WEST;
         Rover rover = new Rover(position, heading);
 
-        rover.move();
-
-        assertEquals("0 0 W", rover.getRoverPosition());
+        assertEquals("0 0 W", rover.move().getRoverPosition());
     }
 }

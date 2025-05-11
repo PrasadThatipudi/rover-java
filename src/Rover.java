@@ -4,51 +4,33 @@ import models.Position;
 import java.util.HashMap;
 
 public class Rover {
+    private final HashMap<Direction, Direction> leftDirections;
+    private final HashMap<Direction, Direction> rightDirections;
+    private final HashMap<Direction, int[]> moveOffSets;
+
     private Direction heading;
-    private Position position;
+    private final Position position;
 
-    public Rover(Integer x, Integer y, Direction heading) {
-        this.position = new Position(x, y);
-        this.heading = heading;
-    }
-
-    public Rover(Position position, Direction facingDirection) {
+    public Rover( Position position, Direction facingDirection) {
         this.position = position;
         this.heading = facingDirection;
+        this.leftDirections = getLeftDirections();
+        this.rightDirections = getRightDirections();
+        this.moveOffSets = getMoveOffSets();
     }
 
-    public int getX() {
-        return position.getX();
-    }
-
-    public int getY() {
-        return position.getY();
-    }
-
-    public Direction getHeading() {
-        return heading;
-    }
-
-    public String getRoverPosition() {
-        String roverPosition = String.valueOf(position.getX()).concat(" " + String.valueOf(position.getY())).concat(" " + String.valueOf(heading.acronym));
-
-        return  roverPosition;
-    }
-
-    public Direction left() {
+    private static HashMap<Direction, Direction> getLeftDirections(){
         HashMap<Direction, Direction> leftDirections = new HashMap<>();
-        
+
         leftDirections.put(Direction.NORTH, Direction.WEST);
         leftDirections.put(Direction.EAST, Direction.NORTH);
         leftDirections.put(Direction.SOUTH, Direction.EAST);
         leftDirections.put(Direction.WEST, Direction.SOUTH);
 
-        heading = leftDirections.get(heading);
-        return  heading;
+        return leftDirections;
     }
 
-
-    public Direction right() {
+    private static HashMap<Direction, Direction> getRightDirections() {
         HashMap<Direction, Direction> rightDirections = new HashMap<>();
 
         rightDirections.put(Direction.NORTH,Direction.EAST);
@@ -56,22 +38,42 @@ public class Rover {
         rightDirections.put(Direction.SOUTH,Direction.WEST);
         rightDirections.put(Direction.WEST,Direction.NORTH);
 
-        heading = rightDirections.get(heading);
-        return  heading;
+        return rightDirections;
     }
 
-    public void move() {
+    private static HashMap<Direction, int[]> getMoveOffSets() {
         HashMap<Direction, int[]> offSets = new HashMap<>();
 
         offSets.put(Direction.NORTH, new int[]{0, 1});
         offSets.put(Direction.EAST, new int[]{1, 0});
         offSets.put(Direction.SOUTH, new int[]{0, -1});
         offSets.put(Direction.WEST, new int[]{-1, 0});
+        return offSets;
+    }
 
-        int offSetX = offSets.get(heading)[0];
-        int offSetY = offSets.get(heading)[1];
+    public String getRoverPosition() {
+        return String.valueOf(position.getX()).concat(" " + position.getY()).concat(" " + heading.acronym);
+    }
+
+    public Direction left() {
+        heading = leftDirections.get(heading);
+
+        return  heading;
+    }
+
+    public Direction right() {
+        heading = rightDirections.get(heading);
+
+        return  heading;
+    }
+
+    public Rover move() {
+        int offSetX = moveOffSets.get(heading)[0];
+        int offSetY = moveOffSets.get(heading)[1];
 
         position.moveX(offSetX);
         position.moveY(offSetY);
+
+        return this;
     }
 }
