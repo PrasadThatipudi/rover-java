@@ -4,9 +4,9 @@ import models.Position;
 import java.util.HashMap;
 
 public class Rover {
-    private final HashMap<Direction, Direction> leftDirections;
-    private final HashMap<Direction, Direction> rightDirections;
+
     private final HashMap<Direction, int[]> moveOffSets;
+    private final HashMap<Integer, Direction> directionsMap;
 
     private Direction heading;
     private final Position position;
@@ -14,31 +14,19 @@ public class Rover {
     public Rover( Position position, Direction facingDirection) {
         this.position = position;
         this.heading = facingDirection;
-        this.leftDirections = getLeftDirections();
-        this.rightDirections = getRightDirections();
+        this.directionsMap = getDirectionsMap();
         this.moveOffSets = getMoveOffSets();
     }
 
-    private static HashMap<Direction, Direction> getLeftDirections(){
-        HashMap<Direction, Direction> leftDirections = new HashMap<>();
+    private static HashMap<Integer, Direction> getDirectionsMap(){
+        HashMap<Integer, Direction> directions = new HashMap<>();
 
-        leftDirections.put(Direction.NORTH, Direction.WEST);
-        leftDirections.put(Direction.EAST, Direction.NORTH);
-        leftDirections.put(Direction.SOUTH, Direction.EAST);
-        leftDirections.put(Direction.WEST, Direction.SOUTH);
+        directions.put(0, Direction.NORTH);
+        directions.put(1, Direction.EAST);
+        directions.put(2, Direction.SOUTH);
+        directions.put(3, Direction.WEST);
 
-        return leftDirections;
-    }
-
-    private static HashMap<Direction, Direction> getRightDirections() {
-        HashMap<Direction, Direction> rightDirections = new HashMap<>();
-
-        rightDirections.put(Direction.NORTH,Direction.EAST);
-        rightDirections.put(Direction.EAST,Direction.SOUTH);
-        rightDirections.put(Direction.SOUTH,Direction.WEST);
-        rightDirections.put(Direction.WEST,Direction.NORTH);
-
-        return rightDirections;
+        return directions;
     }
 
     private static HashMap<Direction, int[]> getMoveOffSets() {
@@ -48,6 +36,7 @@ public class Rover {
         offSets.put(Direction.EAST, new int[]{1, 0});
         offSets.put(Direction.SOUTH, new int[]{0, -1});
         offSets.put(Direction.WEST, new int[]{-1, 0});
+
         return offSets;
     }
 
@@ -58,15 +47,12 @@ public class Rover {
             switch (instruction){
                 case "L" -> {
                     rover.left();
-                    break;
                 }
                 case "R" -> {
                     rover.right();
-                    break;
                 }
                 case "M" -> {
                     rover.move();
-                    break;
                 }
             }
         }
@@ -79,13 +65,15 @@ public class Rover {
     }
 
     public Direction left() {
-        heading = leftDirections.get(heading);
+        Integer newDirectionId = (heading.id + 3) % 4;
+        heading = directionsMap.get(newDirectionId);
 
         return  heading;
     }
 
     public Direction right() {
-        heading = rightDirections.get(heading);
+        Integer newDirectionId = (heading.id + 1) % 4;
+        heading = directionsMap.get(newDirectionId);
 
         return  heading;
     }
