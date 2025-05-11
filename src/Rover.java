@@ -1,22 +1,26 @@
 import models.Direction;
+import models.Position;
 
 public class Rover {
-    private final Integer x;
-    private final Integer y;
     private Direction facingDirection;
+    private Position position;
 
     public Rover(Integer x, Integer y, Direction facingDirection) {
-        this.x = x;
-        this.y = y;
+        this.position = new Position(x, y);
+        this.facingDirection = facingDirection;
+    }
+
+    public Rover(Position position, Direction facingDirection) {
+        this.position = position;
         this.facingDirection = facingDirection;
     }
 
     public int getX() {
-        return x;
+        return position.getX();
     }
 
     public int getY() {
-        return y;
+        return position.getY();
     }
 
     public Direction getFacingDirection() {
@@ -24,7 +28,7 @@ public class Rover {
     }
 
     public String getRoverPosition() {
-        String roverPosition = String.valueOf(x).concat(" " + String.valueOf(y)).concat(" " + String.valueOf(facingDirection.acronym));
+        String roverPosition = String.valueOf(position.getX()).concat(" " + String.valueOf(position.getY())).concat(" " + String.valueOf(facingDirection.acronym));
 
         return  roverPosition;
     }
@@ -76,4 +80,25 @@ public class Rover {
             }
         }
         }
+
+    public void move() {
+        switch (facingDirection){
+            case NORTH -> {
+                position.moveY(1);
+                return;
+            }
+            case EAST -> {
+                position.moveX(1);
+                return;
+            }
+            case SOUTH -> {
+                position.moveY(-1);
+                return;
+            }
+            case WEST -> {
+                position.moveX(-1);
+                return;
+            }
+        }
+    }
 }

@@ -1,4 +1,5 @@
 import models.Direction;
+import models.Position;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -6,30 +7,27 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RoverTest {
     @Test
     void instantiateRover(){
-        int x = 1;
-        int y = 2;
+        Position position = new Position(0, 0);
         Direction facingDirection = Direction.NORTH;
-        Rover rover = new Rover(x, y, facingDirection);
+        Rover rover = new Rover(position, facingDirection);
 
-        assertEquals("1 2 N", rover.getRoverPosition());
+        assertEquals("0 0 N", rover.getRoverPosition());
     }
 
     @Test
     void left(){
-        int x = 1;
-        int y = 2;
+        Position position = new Position(0, 0);
         Direction facingDirection = Direction.NORTH;
-        Rover rover = new Rover(x, y, facingDirection);
+        Rover rover = new Rover(position, facingDirection);
 
         assertEquals(Direction.WEST, rover.left());
     }
 
     @Test
     void multipleLeft(){
-        int x = 1;
-        int y = 2;
+        Position position = new Position(0, 0);
         Direction facingDirection = Direction.NORTH;
-        Rover rover = new Rover(x, y, facingDirection);
+        Rover rover = new Rover(position, facingDirection);
 
         rover.left();
 
@@ -38,23 +36,65 @@ public class RoverTest {
 
     @Test
     void right(){
-        int x = 1;
-        int y = 2;
+        Position position = new Position(0, 0);
         Direction facingDirection = Direction.NORTH;
-        Rover rover = new Rover(x, y, facingDirection);
+        Rover rover = new Rover(position, facingDirection);
 
         assertEquals(Direction.EAST, rover.right());
     }
 
     @Test
     void multipleRight(){
-        int x = 1;
-        int y = 2;
+        Position position = new Position(0, 0);
         Direction facingDirection = Direction.NORTH;
-        Rover rover = new Rover(x, y, facingDirection);
+        Rover rover = new Rover(position, facingDirection);
 
         rover.right();
 
         assertEquals(Direction.SOUTH, rover.right());
+    }
+
+    @Test
+    void moveOneStepNorth(){
+        Position position = new Position(0, 0);
+        Direction facingDirection = Direction.NORTH;
+        Rover rover = new Rover(position, facingDirection);
+
+        rover.move();
+
+        assertEquals("0 1 N", rover.getRoverPosition());
+    }
+
+    @Test
+    void moveOneStepSouth(){
+        Position position = new Position(0, 1);
+        Direction facingDirection = Direction.SOUTH;
+        Rover rover = new Rover(position, facingDirection);
+
+        rover.move();
+
+        assertEquals("0 0 S", rover.getRoverPosition());
+    }
+
+    @Test
+    void moveOneStepEast(){
+        Position position = new Position(0, 0);
+        Direction facingDirection = Direction.EAST;
+        Rover rover = new Rover(position, facingDirection);
+
+        rover.move();
+
+        assertEquals("1 0 E", rover.getRoverPosition());
+    }
+
+    @Test
+    void moveOneStepWest(){
+        Position position = new Position(1, 0);
+        Direction facingDirection = Direction.WEST;
+        Rover rover = new Rover(position, facingDirection);
+
+        rover.move();
+
+        assertEquals("0 0 W", rover.getRoverPosition());
     }
 }
